@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { initRegionList, initPokemonList } from './ducks/pokemonReducer';
+import Region from './components/Region'
 import axios from 'axios';
 import './App.css';
 
@@ -8,9 +9,10 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      user: {},
       username: '',
       password: '',
-      loggedIn: false
+      loggedIn: false,
     }
   }
 
@@ -52,8 +54,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.pokemon)
-    const { regionList } = this.props.pokemon
+    console.log(this.props)
+    const { regionList, pokemonNameList } = this.props.pokemon
     return (
       <div className="App" >
         <header id="user-info">
@@ -77,11 +79,12 @@ class App extends Component {
         <main>
           <h1>POKEMON BATTLE</h1>
           <section id="battle-area">
-            {regionList[0]
+            {regionList[0] && this.state.loggedIn
               ? (
-                <ul>
-                  {regionList.map(region => <h3>{region.name}</h3>)}
-                </ul>
+                <div>
+                  {regionList.map((region, i) => <Region key={i} regionObj={region} initPokemonListFn={this.props.initPokemonList}/>)}
+                  {pokemonNameList.map((pokemon,i) => <h3 key={i}>{pokemon.pokemon_species.name}</h3>)}
+                </div>
               ) : (
                 <div></div>
               )

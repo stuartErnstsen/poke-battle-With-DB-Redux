@@ -20,11 +20,22 @@ export function initRegionList() {
     }
 }
 
-export function initPokemonList(regionUrl) {
 
-    const regionPokedexUrl = axios.get(regionUrl).then(res => res.data.pokedexes[0].url)
-    const pokemonList = axios.get(regionPokedexUrl).then(res => res.data.pokemon_entries)
-    const obj = { pokemonNameList: pokemonList, currentRegionUrl: regionPokedexUrl }
+async function pokemonDrill(url){
+    //Drilling into api data to retrieve pokemon list for the region
+    const regionPokedexUrl = await axios.get(url).then(res => res.data.pokedexes[0].url)
+    const pokemonList = await axios.get(regionPokedexUrl).then(res => res.data.pokemon_entries)
+    return { pokemonNameList: pokemonList, currentRegionUrl: regionPokedexUrl }
+}
+
+
+export function initPokemonList(regionUrl) {
+    // const regionPokedexUrl = axios.get(regionUrl).then(res => res.data.pokedexes[0].url)
+    // console.log(regionPokedexUrl)
+    // const pokemonList = axios.get(regionPokedexUrl).then(res => res.data.pokemon_entries)
+    // console.log(pokemonList)
+    // const obj = { pokemonNameList: pokemonList, currentRegionUrl: regionPokedexUrl }
+    const obj = pokemonDrill(regionUrl)
     //RETURNS ARRAY EXAMPLE SHOWN HERE: https://pokeapi.co/api/v2/pokedex/2/
     return {
         type: INIT_POKEMON_LIST,
@@ -33,6 +44,7 @@ export function initPokemonList(regionUrl) {
 }
 
 export default function pokemonReducer(state = initialState, action) {
+    // console.log(action)
     const { type, payload } = action
     switch (type) {
         case INIT_REGION_LIST + "_PENDING":
