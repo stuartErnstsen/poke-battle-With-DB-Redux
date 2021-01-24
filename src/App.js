@@ -1,20 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { initRegionList, initPokemonList } from './ducks/pokemonReducer';
-import Region from './components/Region'
-import axios from 'axios';
+import mainRoutes from './mainRoutes';
+import Region from './components/TeamBuilder/Region';
+import Login from './components/Login';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      user: {},
-      username: '',
-      password: '',
-      loggedIn: false,
-    }
-  }
 
   componentDidMount() {
     this.props.initRegionList();
@@ -24,66 +16,22 @@ class App extends Component {
     this.setState({ [`${e.target.name}`]: e.target.value })
   }
 
-  handleRegister = (e) => {
-    const { username, password } = this.state
-    axios.post('/auth/register', { username, password })
-      .then(res => {
-        this.setState({ loggedIn: true })
-      })
-      .catch(err => alert(err.response.request.response))
-    this.setState({ username: '', password: '' })
-  }
-
-  handleLogin = (e) => {
-    const { username, password } = this.state
-    axios.post('/auth/login', { username, password })
-      .then(res => {
-        console.log(res.data)
-        this.setState({ loggedIn: true })
-      })
-      .catch(err => console.log(err))
-    this.setState({ username: '', password: '' })
-  }
-
-  handleLogout = () => {
-    if (this.state.loggedIn) {
-      axios.get('/auth/logout')
-        .then(() => this.setState({ loggedIn: false }))
-        .catch(err => console.log(err))
-    }
-  }
-
   render() {
-    console.log(this.props)
     const { regionList, pokemonNameList } = this.props.pokemon
     return (
       <div className="App" >
         <header id="user-info">
-          {this.state.loggedIn
-            ? (
-              <div>
-                <h1>Trainer: </h1>
-                <h2>Team name:</h2>
-              </div>
-            ) : (
-              <div>
-                <input value={this.state.username} name='username' onChange={this.handleChange} placeholder='Username' />
-                <input value={this.state.password} name='password' onChange={this.handleChange} placeholder='Password' />
-                <button onClick={this.handleLogin}>LOGIN</button>
-                <button onClick={this.handleRegister}>REGISTER</button>
-              </div>
-            )
-          }
-          <button onClick={this.handleLogout}>LOGOUT</button>
+          <Login />
         </header>
+        <h1>POKEMON BATTLE LOGO PLACEHOLDER</h1>
         <main>
-          <h1>POKEMON BATTLE</h1>
+          {mainRoutes}
           <section id="battle-area">
-            {regionList[0] && this.state.loggedIn
+            {regionList[0]
               ? (
                 <div>
-                  {regionList.map((region, i) => <Region key={i} regionObj={region} initPokemonListFn={this.props.initPokemonList}/>)}
-                  {pokemonNameList.map((pokemon,i) => <h3 key={i}>{pokemon.pokemon_species.name}</h3>)}
+                  {regionList.map((region, i) => <Region key={i} regionObj={region} initPokemonListFn={this.props.initPokemonList} />)}
+                  {pokemonNameList.map((pokemon, i) => <h3 key={i}>{pokemon.pokemon_species.name}</h3>)}
                 </div>
               ) : (
                 <div></div>
@@ -99,7 +47,7 @@ class App extends Component {
 
 const mapStateToProps = stateRedux => {
   return {
-    team: stateRedux.team,
+    // user: stateRedux.user,
     pokemon: stateRedux.pokemon
   }
 }
