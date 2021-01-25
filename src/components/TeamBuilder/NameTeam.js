@@ -6,8 +6,10 @@ const NameTeam = props => {
     const [nameInput, setInput] = useState('')
 
     useEffect(() => {
-        console.log(props)
-    }, [props])
+        if (!props.user.loggedIn) {
+            props.history.push('/')
+        }
+    }, [props.user.loggedIn, props.history])
 
     const handleSubmit = (e) => {
         e.preventDefault();

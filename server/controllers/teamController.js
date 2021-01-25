@@ -20,7 +20,6 @@ module.exports = {
         const { user_id } = req.body;
         const db = req.app.get('db');
         const [hasTeam] = await db.check_team_user_id(user_id);
-        console.log(hasTeam)
         res.status(200).send(hasTeam)
     }
 }

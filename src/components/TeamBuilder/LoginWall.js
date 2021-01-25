@@ -10,14 +10,13 @@ const LoginWall = props => {
             axios.get('/api/team', { user_id })
                 .then(res => hasTeam = res.data)
                 .catch(err => console.log(err))
-            console.log(hasTeam)
             if (!hasTeam) {
                 props.history.push('/name-team')
             } else {
                 props.history.push('/team-builder')
             }
         }
-    }, [props.user.loggedIn, props.history, props.user.user])
+    }, [props.user, props.user.loggedIn, props.history, props.user.user])
 
     return (
         <h1>Please Login</h1>
