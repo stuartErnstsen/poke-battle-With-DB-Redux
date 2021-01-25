@@ -29,7 +29,7 @@ module.exports = {
         if (!isAuthenticated) {
             return res.status(403).send('Password is incorrect')
         }
-        req.session.user = foundUser[0]
+        req.session.user = { username: foundUser[0].username, user_id: foundUser[0].user_id }
         res.status(200).send(req.session.user)
     },
     logout: (req, res) => {

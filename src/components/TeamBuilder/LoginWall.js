@@ -1,12 +1,23 @@
 import { useEffect } from 'react';
 import { connect } from "react-redux";
+import axios from 'axios';
 
 const LoginWall = props => {
     useEffect(() => {
         if (props.user.loggedIn) {
-            props.history.push('/team-builder')
+            const { user_id } = props.user.user
+            let hasTeam;
+            axios.get('/api/team', { user_id })
+                .then(res => hasTeam = res.data)
+                .catch(err => console.log(err))
+            console.log(hasTeam)
+            if (!hasTeam) {
+                props.history.push('/name-team')
+            } else {
+                props.history.push('/team-builder')
+            }
         }
-    }, [props.user.loggedIn, props.history])
+    }, [props.user.loggedIn, props.history, props.user.user])
 
     return (
         <h1>Please Login</h1>

@@ -32,6 +32,8 @@ const Login = props => {
         if (props.user.loggedIn) {
             axios.get('/auth/logout')
                 .then(() => {
+                    console.log(props)
+                    // props.history.push('/');
                     props.removeUser();
                 })
                 .catch(err => console.log(err))
