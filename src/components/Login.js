@@ -4,20 +4,9 @@ import { setUser, removeUser } from '../ducks/userReducer';
 import axios from 'axios';
 
 const Login = props => {
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         usernameInput: '',
-    //         passwordInput: '',
-    //         loggedIn: false,
-    //     }
-    // }
-
     const [input, setInput] = useState({ usernameInput: '', passwordInput: '' });
-    // const [passwordInput, setPasswordInput] = useState('');
 
     const handleChange = (e) => {
-        // this.setState({ [`${e.target.name}`]: e.target.value })
         setInput({ ...input, [`${e.target.name}`]: e.target.value })
     }
 

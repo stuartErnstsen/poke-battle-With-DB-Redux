@@ -5,14 +5,14 @@ module.exports = {
         const { username, password } = req.body;
         const db = req.app.get('db');
 
-        const newUser = await db.checkUser({ username });
+        const newUser = await db.check_user({ username });
         if (newUser[0]) {
             return res.status(409).send('Username already taken');
         };
 
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const registeredUser = await db.registerUser({ username, hash })[0];
+        const registeredUser = await db.register_user({ username, hash })[0];
 
         req.session.user = registeredUser;
         res.status(201).send(req.session.user);
@@ -21,7 +21,7 @@ module.exports = {
         const { username, password } = req.body;
         const db = req.app.get('db')
 
-        const foundUser = await db.checkUser({ username })
+        const foundUser = await db.check_user({ username })
         if (!foundUser[0]) {
             return res.status(401).send('Username does not exist')
         }
