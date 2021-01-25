@@ -17,9 +17,9 @@ module.exports = {
         res.status(200).send(req.session.user.team);
     },
     getUserTeam: async (req, res) => {
-        const { user_id } = req.body;
+        const { user_id } = req.session.user;
         const db = req.app.get('db');
         const [hasTeam] = await db.check_team_user_id(user_id);
-        res.status(200).send(hasTeam)
+        hasTeam ? res.status(200).send(hasTeam) : res.status(200).send({})
     }
 }

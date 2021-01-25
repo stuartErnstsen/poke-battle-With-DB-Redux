@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addTeam } from '../../ducks/userReducer';
+import axios from 'axios';
 
 const NameTeam = props => {
     const [nameInput, setInput] = useState('')
@@ -9,11 +10,19 @@ const NameTeam = props => {
         if (!props.user.loggedIn) {
             props.history.push('/')
         }
-    }, [props.user.loggedIn, props.history])
+        if (props.user.team.hasOwnProperty('team_name')) {
+            props.history.push('team-builder')
+        }
+    }, [props.user.loggedIn, props.history, props.user.team])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.addTeam(nameInput);
+        axios.post('/api/team', { teamName: nameInput })
+            .then(res => {
+                console.log(res.data);
+                props.addTeam(res.data);
+            })
+            .catch(err => console.log(err))
     }
 
     return (

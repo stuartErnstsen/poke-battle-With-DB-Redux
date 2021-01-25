@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
-import { setUser, removeUser } from '../ducks/userReducer';
+import { setUser, removeUser, addTeam } from '../ducks/userReducer';
 import axios from 'axios';
 
 const Login = props => {
@@ -14,6 +14,9 @@ const Login = props => {
         axios.post('/auth/register', { username: input.usernameInput, password: input.passwordInput })
             .then(res => {
                 props.setUser(res.data)
+                axios.get('/api/team')
+                    .then(res => props.addTeam(res.data))
+                    .catch(err => console.log(err))
             })
             .catch(err => alert(err.response.request.response))
         setInput({ usernameInput: '', passwordInput: '' })
@@ -23,6 +26,9 @@ const Login = props => {
         axios.post('/auth/login', { username: input.usernameInput, password: input.passwordInput })
             .then(res => {
                 props.setUser(res.data);
+                axios.get('/api/team')
+                    .then(res => props.addTeam(res.data))
+                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
         setInput({ usernameInput: '', passwordInput: '' })
@@ -44,7 +50,7 @@ const Login = props => {
                 ? (
                     <div>
                         <h1>Trainer: {props.user.user.username}</h1>
-                        <h2>Team name:</h2>
+                        <h2>Team name: {props.user.team?.team_name}</h2>
                     </div>
                 ) : (
                     <div>
@@ -66,4 +72,4 @@ const mapStateToProps = stateRedux => {
     }
 }
 
-export default connect(mapStateToProps, { setUser, removeUser })(Login);
+export default connect(mapStateToProps, { setUser, removeUser, addTeam })(Login);

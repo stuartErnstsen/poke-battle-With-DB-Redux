@@ -1,8 +1,9 @@
 
 
 const Region = (props) => {
+    const { url, name } = props.regionObj
     return (
-        <h3 onClick={() => props.initPokemonListFn(props.regionObj.url)}>{props.regionObj.name}</h3>
+        <h3 onClick={() => props.initPokemonListFn(url)}>{name}</h3>
     )
 }
 

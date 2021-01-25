@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { regionList } from './RegionList';
 
 const TeamBuilder = props => {
     useEffect(() => {

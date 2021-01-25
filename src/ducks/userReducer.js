@@ -1,4 +1,3 @@
-import axios from "axios"
 
 const initialState = {
     user: {},
@@ -23,11 +22,10 @@ export function removeUser() {
     }
 }
 
-export function addTeam(team_name) {
-    const data = axios.post('/api/team', { team_name })
+export function addTeam(teamObj) {
     return {
         type: ADD_TEAM,
-        payload: data
+        payload: teamObj
     }
 }
 
@@ -37,7 +35,7 @@ export default function userReducer(state = initialState, action) {
         case SET_USER:
             return { ...state, user: payload, loggedIn: true };
         case REMOVE_USER:
-            return { ...state, user: {}, loggedIn: false };
+            return { ...state, user: {}, team: {}, loggedIn: false };
         case ADD_TEAM:
             return { ...state, team: payload };
         default:
