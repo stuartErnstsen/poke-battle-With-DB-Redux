@@ -34,4 +34,4 @@ const mapStateToProps = stateRedux => {
   }
 }
 
-export default connect(mapStateToProps, { initRegionList, initPokemonList })(App);
+export default connect(mapStateToProps, { initRegionList, initPokemonList })(App)

@@ -45,7 +45,7 @@ export default function pokemonReducer(state = initialState, action) {
         case INIT_REGION_LIST + "_PENDING":
             return { ...state, loading: true };
         case INIT_REGION_LIST + "_FULFILLED":
-            return { ...state, regionList: payload.results, loading: false };
+            return { ...state, regionList: payload.results, loading: false }
         case INIT_POKEMON_LIST + "_PENDING":
             return { ...state, loading: true }
         case INIT_POKEMON_LIST + "_FULFILLED":

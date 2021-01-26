@@ -14,4 +14,4 @@ const mapStateToProps = stateRedux => {
     }
 }
 
-export default connect(mapStateToProps)(PokemonList);
+export default connect(mapStateToProps)(PokemonList)

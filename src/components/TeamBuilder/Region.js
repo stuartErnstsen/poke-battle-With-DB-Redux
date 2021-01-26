@@ -1,7 +1,7 @@
 
 
 const Region = (props) => {
-    const { url, name } = props.regionObj;
+    const { url, name } = props.regionObj
     const { initPokemonListFn, changeViewFn } = props;
     const handleClick = () => {
         initPokemonListFn(url);

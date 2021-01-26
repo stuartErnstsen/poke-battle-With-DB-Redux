@@ -27,4 +27,4 @@ const mapStateToProps = stateRedux => {
     }
 }
 
-export default connect(mapStateToProps)(LoginWall);
+export default connect(mapStateToProps)(LoginWall)

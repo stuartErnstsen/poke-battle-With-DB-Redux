@@ -39,4 +39,4 @@ const mapStateToProps = stateRedux => {
     }
 }
 
-export default connect(mapStateToProps, { addTeam })(NameTeam);
+export default connect(mapStateToProps, { addTeam })(NameTeam)

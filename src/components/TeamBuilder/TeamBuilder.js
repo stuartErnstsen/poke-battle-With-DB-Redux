@@ -53,4 +53,4 @@ const mapStateToProps = stateRedux => {
     }
 }
 
-export default connect(mapStateToProps)(TeamBuilder);
+export default connect(mapStateToProps)(TeamBuilder)
