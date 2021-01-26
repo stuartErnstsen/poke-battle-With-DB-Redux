@@ -1,9 +1,14 @@
 
 
 const Region = (props) => {
-    const { url, name } = props.regionObj
+    const { url, name } = props.regionObj;
+    const { initPokemonListFn, changeViewFn } = props;
+    const handleClick = () => {
+        initPokemonListFn(url);
+        changeViewFn('pokemonListView')
+    }
     return (
-        <h3 onClick={() => props.initPokemonListFn(url)}>{name}</h3>
+        <h3 onClick={handleClick}>{name}</h3>
     )
 }
 
