@@ -3,7 +3,7 @@ const express = require('express'),
     massive = require('massive'),
     session = require('express-session'),
     authCtrl = require('./controllers/authController'),
-    teamCtrl = require('./controllers/teamController'),
+    teamCtrl = require('./controllers/userController'),
     { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
     app = express()
 
