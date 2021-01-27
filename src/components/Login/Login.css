@@ -44,7 +44,7 @@ header button {
     background-color: #FFF157;
     color: #6993F2;
     font-weight: bold;
-    transition: .5s;
+    transition: transform .5s;
 }
 
 header button:hover {
@@ -54,6 +54,7 @@ header button:hover {
 
 button:hover {
     cursor: pointer;
+    transition: background-color .5s, color .5s;
 }
 
 .alt-button {
@@ -69,11 +70,12 @@ button:hover {
 
 .button-hidden {
     transform: translate(110px);
-    transition: .5s;
+    transition: transform .5s;
 }
 
 .button-hidden-on-mount {
     visibility: hidden;
+    transition: visibility 0s;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

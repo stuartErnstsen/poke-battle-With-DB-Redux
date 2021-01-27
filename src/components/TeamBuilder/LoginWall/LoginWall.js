@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
 import { connect } from "react-redux";
-import axios from 'axios';
 
 const LoginWall = props => {
+    const { hasTeam, loggedIn } = props;
     useEffect(() => {
-        if (props.user.loggedIn) {
-            let hasTeam = axios.get('/api/team')
-                .then(res => res.data)
-                .catch(err => console.log(err))
+        if (loggedIn) {
             if (!hasTeam) {
                 props.history.push('/name-team')
             } else {
                 props.history.push('/team-builder')
             }
         }
-    }, [props.user.loggedIn, props.history])
+    }, [loggedIn, hasTeam, props.history])
+    console.log(props.user)
 
     return (
         <h1>LOGIN TO CONTINUE</h1>
@@ -23,7 +21,8 @@ const LoginWall = props => {
 
 const mapStateToProps = stateRedux => {
     return {
-        user: stateRedux.user
+        loggedIn: stateRedux.user.loggedIn,
+        hasTeam: stateRedux.user.team.hasOwnProperty('team_name')
     }
 }
 

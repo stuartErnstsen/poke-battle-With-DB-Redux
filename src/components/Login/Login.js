@@ -71,7 +71,7 @@ const Login = props => {
                         <input value={input.usernameInput} name='usernameInput' onChange={handleChange} placeholder='Username' />
                         <input value={input.passwordInput} name='passwordInput' onChange={handleChange} placeholder='Password' />
                         <button id='login-btn' onClick={handleLogin}>LOGIN</button>
-                        <button id='reg-btn' className="alt-button button-hidden-on-mount" onClick={handleRegister}>REGISTER</button>
+                        <button id='reg-btn' className="alt-button button-hidden-on-mount button-hidden" onClick={handleRegister}>REGISTER</button>
                         <p>{!regView ? <span>Not Registered? </span> : <span >Already Registered? </span>}
                             <span className="span-hover" onClick={() => setRegView(!regView)}>Click here!
                                 </span>
