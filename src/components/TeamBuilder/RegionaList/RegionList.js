@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from "react-redux";
-import { initPokemonList, initRegionList } from '../../ducks/pokemonReducer';
-import Region from './Region';
+import { initPokemonList, initRegionList } from '../../../ducks/pokemonReducer';
+import Region from '../Region/Region';
 
 const RegionList = props => {
     const { initRegionList, changeViewFn } = props

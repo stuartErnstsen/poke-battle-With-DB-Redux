@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import RegionList from './RegionList';
-import PokemonList from './PokemonList';
+import RegionList from '../RegionaList/RegionList';
+import PokemonList from '../PokemonList/PokemonList';
+import PokemonDisplay from '../PokemonDisplay/PokemonDisplay';
 
 const TeamBuilder = props => {
     const [view, setView] = useState({
@@ -9,6 +10,7 @@ const TeamBuilder = props => {
         pokemonListView: false,
         pokemonView: false
     })
+
     useEffect(() => {
         if (!props.user.loggedIn) {
             props.history.push('/');
@@ -40,7 +42,7 @@ const TeamBuilder = props => {
             <section >
                 {view.pokemonView
                     ? (
-                        <h1>POKEMON VIEW</h1>
+                        <PokemonDisplay />
                     ) : <h5 onClick={() => changeView('pokemonView')}>change to pokemon view</h5>}
             </section>
         </section>

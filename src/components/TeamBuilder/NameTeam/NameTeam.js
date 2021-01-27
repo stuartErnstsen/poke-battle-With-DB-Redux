@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addTeam } from '../../ducks/userReducer';
+import { addTeam } from '../../../ducks/userReducer';
 import axios from 'axios';
 
 const NameTeam = props => {

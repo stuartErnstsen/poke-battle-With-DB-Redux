@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { initRegionList, initPokemonList } from './ducks/pokemonReducer';
 import mainRoutes from './mainRoutes';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import './App.css';
 
 class App extends Component {
@@ -14,9 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <header id="user-info">
-          <Login />
-        </header>
+        <Login />
         <h1>POKEMON BATTLE LOGO PLACEHOLDER</h1>
         <main>
           {mainRoutes}

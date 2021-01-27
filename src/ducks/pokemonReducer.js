@@ -4,12 +4,13 @@ const initialState = {
     regionList: [],
     currentRegionUrl: '',
     pokemonNameList: [],
-    currentPokemonUrl: '',
+    currentPokemon: {},
     loading: false
 }
 
 const INIT_REGION_LIST = 'INIT_REGION_LIST'
 const INIT_POKEMON_LIST = 'INIT_POKEMON_LIST'
+const INIT_POKEMON = 'INIT_POKEMON'
 // const GET__POKEMON = 'GET_POKEMON'
 
 export function initRegionList() {
@@ -38,6 +39,14 @@ export function initPokemonList(regionUrl) {
     }
 }
 
+export function initPokemon(pokemonObj) {
+    console.log(pokemonObj)
+    return {
+        type: INIT_POKEMON,
+        payload: pokemonObj
+    }
+}
+
 export default function pokemonReducer(state = initialState, action) {
     // console.log(action)
     const { type, payload } = action
@@ -45,11 +54,13 @@ export default function pokemonReducer(state = initialState, action) {
         case INIT_REGION_LIST + "_PENDING":
             return { ...state, loading: true };
         case INIT_REGION_LIST + "_FULFILLED":
-            return { ...state, regionList: payload.results, loading: false }
+            return { ...state, regionList: payload.results, loading: false };
         case INIT_POKEMON_LIST + "_PENDING":
-            return { ...state, loading: true }
+            return { ...state, loading: true };
         case INIT_POKEMON_LIST + "_FULFILLED":
             return { ...state, ...payload, loading: false };
+        case INIT_POKEMON:
+            return { ...state, currentPokemon: payload };
         default:
             return state;
     }
