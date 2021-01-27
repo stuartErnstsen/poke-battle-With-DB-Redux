@@ -7,12 +7,23 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 100px;
+}
+
+.user-info p {
+    margin-right: 15px;
+    font-size: .79rem;
+}
+
+.span-hover:hover {
+    color: white;
+    cursor: pointer;
 }
 
 header input {
     box-sizing: border-box;
     width: 150px;
-    height: 25px;
+    height: 30px;
     margin-right: 10px;
     border: 2px solid white;
     border-radius: 7px;
@@ -22,5 +33,64 @@ header input {
 }
 
 header button {
+    position: absolute;
+    right: 0px;
     outline: none;
+    height: 30px;
+    width: 90px;
+    margin-right: 10px;
+    border-radius: 36px;
+    border: 2px solid #FFF157;
+    background-color: #FFF157;
+    color: #6993F2;
+    font-weight: bold;
+    transition: .5s;
+}
+
+header button:hover {
+    background-color: transparent;
+    color: #FFF157;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.alt-button {
+    border: 2px solid #F06F66;
+    background-color: #F06F66;
+    color: white;
+}
+
+.alt-button:hover {
+    background-color: transparent;
+    color: #F06F66;
+}
+
+.button-hidden {
+    transform: translate(110px);
+    transition: .5s;
+}
+
+.button-hidden-on-mount {
+    visibility: hidden;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 1; /* Firefox */
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
 }
