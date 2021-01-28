@@ -44,7 +44,7 @@ header button {
     background-color: #FFF157;
     color: #6993F2;
     font-weight: bold;
-    transition: transform .5s;
+    transition: .5s;
 }
 
 header button:hover {

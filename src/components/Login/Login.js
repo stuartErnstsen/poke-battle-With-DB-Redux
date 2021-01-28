@@ -64,7 +64,7 @@ const Login = props => {
                     <div className="user-info">
                         <h1>Trainer: {props.user.user.username}</h1>
                         <h2>Team name: {props.user.team?.team_name}</h2>
-                        <button className="alt-button" onClick={handleLogout}>LOGOUT</button>
+                        <button id='logout-btn' className="alt-button" onClick={handleLogout}>LOGOUT</button>
                     </div>
                 ) : (
                     <div className="user-info">
